@@ -2,7 +2,7 @@ using UnityEngine;
 
 enum BLOCKS
 {
-    AIR, GRASS, DIRT, PISTON, SPIKE, PISTON_UP_1, PISTON_UP_2
+    AIR, GRASS, DIRT, PISTON, SPIKE, PISTON_UP_1, PISTON_UP_2, WOOD, LEAVE
 }
 
 public class MapGenerator : MonoBehaviour
@@ -74,6 +74,10 @@ public class MapGenerator : MonoBehaviour
                 return BLOCKS.GRASS;
             case 2:
                 return BLOCKS.DIRT;
+            case 3:
+                return BLOCKS.WOOD;
+            case 4:
+                return BLOCKS.LEAVE;
             case 6:
                 return BLOCKS.PISTON;
             case 7:
@@ -96,6 +100,10 @@ public class MapGenerator : MonoBehaviour
                 return (char)1;
             case BLOCKS.DIRT:
                 return (char)2;
+            case BLOCKS.WOOD:
+                return (char)3;
+            case BLOCKS.LEAVE:
+                return (char)4;
             case BLOCKS.PISTON:
                 return (char)6;
             case BLOCKS.PISTON_UP_1:
@@ -118,9 +126,12 @@ public class MapGenerator : MonoBehaviour
         sprites = new Sprite[10];
         sprites[0] = Resources.Load<Sprite>("Sprites/Menu_Grass");
         sprites[1] = Resources.Load<Sprite>("Sprites/Menu_Dirt");
+        sprites[2] = Resources.Load<Sprite>("Sprites/Wood");
+        sprites[3] = Resources.Load<Sprite>("Sprites/Leave");
         sprites[5] = Resources.Load<Sprite>("Sprites/Piston_Down");
         sprites[6] = Resources.Load<Sprite>("Sprites/Piston_Up_1");
         sprites[7] = Resources.Load<Sprite>("Sprites/Piston_Up_2");
+        sprites[8] = Resources.Load<Sprite>("Sprites/Spike");
 
         // load the map data file
         TextAsset textAsset = Resources.Load<TextAsset>("MenuMap");

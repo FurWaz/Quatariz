@@ -47,6 +47,10 @@ public class AsteroidsPlayer : MonoBehaviour
             Mathf.Sin(this.direction)
         );
         transform.rotation = Quaternion.Euler(0, 0, this.direction * (180/3.1415926f) - 90f);
+        int level = PlayerController.readLevel();
+        if (level == 1) // level in history mode
+            scoreGoal.SetActive(true);
+        else scoreGoal.SetActive(false);
     }
 
     // Update is called once per frame
@@ -107,9 +111,7 @@ public class AsteroidsPlayer : MonoBehaviour
         {
             this.position = new Vector2(0, this.animate*4f);
             this.animate -= Time.deltaTime;
-            this.scoreGoal.SetActive(true);
         }
-        this.scoreGoal.SetActive(false);
         transform.position = this.position;
 
         // check for fire 
