@@ -8,7 +8,7 @@ public class AsteroidsPlayer : MonoBehaviour
     public static List<GameObject> bullets;
 
     [SerializeField]
-    float force = 0.05f, rotSpeed = 4;
+    float force = 100f, rotSpeed = 4;
     [SerializeField]
     GameObject templateBullet, losePanel, winPanel, fire, scoreGoal;
     float direction;
@@ -99,7 +99,7 @@ public class AsteroidsPlayer : MonoBehaviour
             this.velocity = this.force * Time.deltaTime;
         } else
             fire.SetActive(false);
-        this.movement += this.velocity * this.velo;
+        this.movement += this.velocity * this.velo * Time.deltaTime;
         this.movement /= 1f + Time.deltaTime;
 
         // apply the translation

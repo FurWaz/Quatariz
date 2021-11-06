@@ -8,9 +8,15 @@ enum BLOCKS
 public class MapGenerator : MonoBehaviour
 {
     [SerializeField]
-    GameObject blockTemplate, mapObject, player;
+    GameObject blockTemplate, mapObject;
+    [SerializeField]
+    string mapPath;
+    [SerializeField]
+    Vector3 shift;
     static Sprite[] sprites;
     static MapGenerator instance;
+    [SerializeField]
+    bool saveMap = true;
 
     static BLOCKS[][] blocks = new BLOCKS[0][];
     static GameObject[][] gameObjects = new GameObject[0][];
@@ -134,9 +140,9 @@ public class MapGenerator : MonoBehaviour
         sprites[8] = Resources.Load<Sprite>("Sprites/Spike");
 
         // load the map data file
-        TextAsset textAsset = Resources.Load<TextAsset>("MenuMap");
+        TextAsset textAsset = Resources.Load<TextAsset>(mapPath);
         string[] mapdata = textAsset.text.Split('\n');
-        blocks = new BLOCKS[mapdata.Length][];
+        if (this.saveMap) blocks = new BLOCKS[mapdata.Length][];
         gameObjects = new GameObject[mapdata.Length][];
 
         // create the game map
@@ -145,18 +151,22 @@ public class MapGenerator : MonoBehaviour
         {
             int x = -1;
             char[] charRow = mapRow.ToCharArray();
-            blocks[y] = new BLOCKS[mapRow.Length];
+            if (this.saveMap) blocks[y] = new BLOCKS[mapRow.Length];
             gameObjects[y] = new GameObject[mapRow.Length];
+            Debug.Log("y="+y);
             foreach (char bloc in charRow)
             {
                 ++x;
                 char nbr = (char) (bloc-'0');
-                blocks[y][x] = char2block(nbr);
+                if (nbr > 65000) continue;
+                if (this.saveMap) blocks[y][x] = char2block(nbr);
                 if (nbr == 0) continue; // air block, skip
                 gameObjects[y][x] = createBlock(nbr, new Vector3(x, -y, 0));
             }
             ++y;
         }
+
+        this.transform.position = shift;
     }
 
     // Update is called once per frame

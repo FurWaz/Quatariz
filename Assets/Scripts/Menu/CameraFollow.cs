@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField]
-    GameObject player;
+    GameObject player, back;
     float speed = 2.0f;
     float zoom = 10.0f;
 
@@ -27,5 +27,6 @@ public class CameraFollow : MonoBehaviour
         );
         movements *= Time.deltaTime * speed;
         transform.Translate(movements);
+        back.transform.Translate(movements * 0.5f);
     }
 }
