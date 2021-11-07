@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class PlayerController : MonoBehaviour
 {
     public const string HORIZONTAL = "Horizontal";
@@ -21,6 +20,8 @@ public class PlayerController : MonoBehaviour
     float animTime = 0f;
     float animType = ANIM_IDLE;
     bool dead = false;
+
+    AudioSource sound;
 
     public static void writeLevel(int level)
     {
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
         }
         writeLevel(0);
         this.mat = GetComponent<MeshRenderer>().material;
+        this.sound = GetComponent<AudioSource>();
     }
 
     public void setYVel(float vel)
@@ -83,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
         // get inputs and move player
         this.yVel -= 9.0f * Time.deltaTime;
-        Vector3 movements = new Vector3(Input.GetAxis(HORIZONTAL), yVel, 0);
+        Vector3 movements = new Vector3((Input.GetKey((KeyCode)Keys.RIGHT)? 1: 0) - (Input.GetKey((KeyCode)Keys.LEFT)? 1: 0), yVel, 0);
         movements *= Time.deltaTime * speed;
         if (movements.y < -0.8f) movements.y = -0.8f;
         Vector3 newPos = MapGenerator.clampMovement(transform.position + movements);
@@ -91,7 +93,7 @@ public class PlayerController : MonoBehaviour
             newPos.y = (transform.position + movements).y;
         if ((transform.position+movements).y != newPos.y && this.yVel < 0)
             this.yVel = 0;
-        if ((Input.GetAxisRaw(VERTICAL) > 0 || Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space)) && yVel == 0)
+        if ((Input.GetKey((KeyCode)Keys.ACTION) || Input.GetKey((KeyCode)Keys.UP)) && yVel == 0)
             this.yVel = 3;
 
         // trigger events for the block under
@@ -104,6 +106,7 @@ public class PlayerController : MonoBehaviour
             case 9:
                 if (!this.dead)
                 {
+                    MapGenerator.triggerBlock(transform.position+new Vector3(0, -1, 0));
                     this.yVel += 3;
                     newPos.y += 0.1f;
                 }
@@ -135,5 +138,9 @@ public class PlayerController : MonoBehaviour
 
         float offX = (int)(animTime*4) * 0.25f;
         this.mat.mainTextureOffset = new Vector2(offX, animType);
+
+        // sound stuff
+        if (this.animType == ANIM_WALK && !this.sound.isPlaying)
+            this.sound.Play();
     }
 }

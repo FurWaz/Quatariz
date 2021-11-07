@@ -16,6 +16,7 @@ public class PongBall : MonoBehaviour
     public void changeX()
     {
         this.direction.x = -this.direction.x;
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     public float getDirectionX()
@@ -45,7 +46,7 @@ public class PongBall : MonoBehaviour
         }
 
 
-        float horizontal = Input.GetAxisRaw(PlayerController.HORIZONTAL);
+        float horizontal = (Input.GetKey((KeyCode)Keys.RIGHT)? 1: 0) - (Input.GetKey((KeyCode)Keys.LEFT)? 1: 0);
         if (horizontal != 0)
         {
             float curAngle = Mathf.Atan2(this.direction.y, this.direction.x);
@@ -62,7 +63,10 @@ public class PongBall : MonoBehaviour
         if ((newPos.x < minX && movements.x < 0) || (newPos.x > maxX && movements.x > 0))
             this.win();
         if ((newPos.y < minY && movements.y < 0) || (newPos.y > maxY && movements.y > 0))
+        {
             this.direction.y = -this.direction.y;
+            gameObject.GetComponent<AudioSource>().Play();
+        }
 
         transform.position += this.direction * Time.deltaTime * this.speed;
     }

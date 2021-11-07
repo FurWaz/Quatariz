@@ -14,6 +14,7 @@ public class PacMap : MonoBehaviour
     {
         for (int i = 0; i < instance.transform.childCount; i++)
             instance.transform.GetChild(i).gameObject.SetActive(false);
+        instance.gameObject.GetComponent<AudioSource>().Stop();
     }
 
     public static int getBlockAt(float x, float y, bool debug = false)

@@ -44,22 +44,26 @@ public class AsteroidsEnemy : MonoBehaviour
             if (dist < transform.localScale.x + bullet.transform.localScale.x * 10f) // touched
             {
                 // delete the bullet and the ennemy
-                if (gameObject != null) Destroy(gameObject, 0.01f);
+                if (gameObject != null) Destroy(gameObject, 0.1f);
                 AsteroidsPlayer.bullets.Remove(bullet);
-                if (bullet != null) Destroy(bullet, 0.01f);
+                if (bullet != null) Destroy(bullet, 0.1f);
 
                 AstreoidsManager.increaseScore((int)(transform.localScale.x * 100f));
                 if (transform.localScale.x > 0.22)
                     for (int i = 0; i < 3; i++)
-                        GameObject.Instantiate(
-                            this, transform.position, Quaternion.Euler(
+                    {
+                        GameObject go = GameObject.Instantiate(
+                            gameObject, transform.position, Quaternion.Euler(
                                 0, 0, transform.rotation.eulerAngles.z + Random.Range(0f, 359.9f)
                             ), transform.parent
-                        ).transform.localScale = new Vector3(
+                        );
+                        go.transform.localScale = new Vector3(
                             transform.localScale.x - 0.1f,
                             transform.localScale.x - 0.1f,
                             transform.localScale.x - 0.1f
                         );
+                        if (i == 0) go.GetComponent<AsteroidsEnemy>().playSound();
+                    }
                 return;
             }
         }
@@ -75,5 +79,10 @@ public class AsteroidsEnemy : MonoBehaviour
         if (this.position.x < -7f || this.position.x > 7f ||
             this.position.y < -10f || this.position.y > 10f)
             if (gameObject != null) Destroy(gameObject, 1);
+    }
+
+    void playSound()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
     }
 }

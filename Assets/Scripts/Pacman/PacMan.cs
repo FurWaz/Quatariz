@@ -135,6 +135,7 @@ public class PacMan : MonoBehaviour
         Phantom.pink.setReady(false);
         Phantom.red.setReady(false);
         PacMap.clear();
+        gameObject.GetComponent<AudioSource>().Play();
 
         this.dieTime = 0;
         this.dead = true;

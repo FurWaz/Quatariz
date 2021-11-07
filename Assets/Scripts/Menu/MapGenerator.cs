@@ -18,6 +18,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField]
     bool saveMap = true;
 
+    [SerializeField]
+    AudioSource audio1, audio2;
+
     static BLOCKS[][] blocks = new BLOCKS[0][];
     static GameObject[][] gameObjects = new GameObject[0][];
     public static Vector3 clampMovement(Vector3 pos)
@@ -47,6 +50,11 @@ public class MapGenerator : MonoBehaviour
             setSprite(pos.x+0.5f, 2, block2char(BLOCKS.PISTON_UP_1));
             blocks[1][(int)(pos.x+0.5f)] = BLOCKS.PISTON_UP_2;
             blocks[2][(int)(pos.x+0.5f)] = BLOCKS.PISTON_UP_1;
+            instance.audio1.Play();
+        }
+        if (blockAt(pos.x+0.5f, -pos.y+1.1f) == BLOCKS.SPIKE)
+        {
+            instance.audio2.Play();
         }
     }
 
@@ -153,7 +161,6 @@ public class MapGenerator : MonoBehaviour
             char[] charRow = mapRow.ToCharArray();
             if (this.saveMap) blocks[y] = new BLOCKS[mapRow.Length];
             if (this.saveMap) gameObjects[y] = new GameObject[mapRow.Length];
-            Debug.Log("y="+y);
             foreach (char bloc in charRow)
             {
                 ++x;

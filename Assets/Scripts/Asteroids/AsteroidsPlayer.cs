@@ -60,7 +60,7 @@ public class AsteroidsPlayer : MonoBehaviour
 
         if (!AstreoidsManager.running)
         {
-            if (Input.GetKey(KeyCode.Return))
+            if (Input.GetKey((KeyCode) Keys.ACTION))
             {
                 if (lapse > 0) return;
                 if (!winPanel.activeSelf)
@@ -74,8 +74,8 @@ public class AsteroidsPlayer : MonoBehaviour
             return;
         }
 
-        float accel = Input.GetAxisRaw(PlayerController.VERTICAL);
-        float dir = Input.GetAxisRaw(PlayerController.HORIZONTAL);
+        float accel = (Input.GetKey((KeyCode)Keys.UP)? 1: 0);
+        float dir = (Input.GetKey((KeyCode)Keys.RIGHT)? 1: 0) - (Input.GetKey((KeyCode)Keys.LEFT)? 1: 0);
         if (dir != 0)
         {
             this.direction -= dir * Time.deltaTime * rotSpeed;
@@ -116,11 +116,12 @@ public class AsteroidsPlayer : MonoBehaviour
 
         // check for fire 
         this.shootTimeout += Time.deltaTime;
-        if ((Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space)) && this.shootTimeout >= 0.2f)
+        if ((Input.GetKey((KeyCode)Keys.ACTION)) && this.shootTimeout >= 0.2f)
         {
             bullets.Add(
                 GameObject.Instantiate(templateBullet, transform.position, transform.rotation)
             );
+            gameObject.GetComponent<AudioSource>().Play();
             this.shootTimeout = 0;
         }
     }

@@ -25,7 +25,7 @@ public class PongIA : MonoBehaviour
         {
             if (this.fadetime > 1)
             {
-                float col = (this.fadetime-1)*0.5f;
+                float col = (this.fadetime-1)*0.5f + 30f/255f;
                 this.mat.color = new Color(col, col, col);
             }
             this.fadetime += Time.deltaTime;
@@ -43,12 +43,14 @@ public class PongIA : MonoBehaviour
         if (bpos.y < pos.y && pos.y > minY)
             newPos.y -= this.speed * Time.deltaTime * factor;
 
-        if (dist2ball < transform.localScale.x * 0.5f) // check for plank hit
+        if (dist2ball < transform.localScale.x * 2f) // check for plank hit
         {
             float distY = Mathf.Abs(pos.y - bpos.y);
+            Debug.Log("checking for collision: dist = "+distY);
             // hit plank, change X direction
             if (distY < (ball.transform.localScale.y+transform.localScale.y)*8)
             {
+                Debug.Log("collision !!");
                 PongBall pb = ball.GetComponent<PongBall>();
                 // if ball in our direction, inverse it
                 if (pb.getDirectionX() * pos.x > 0)
