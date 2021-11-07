@@ -55,7 +55,7 @@ public class MapGenerator : MonoBehaviour
         if (blocks[(int)y][(int)x] != BLOCKS.AIR)
             gameObjects[(int)y][(int)x].GetComponent<SpriteRenderer>()
             .sprite = sprites[spriteIndex-1];
-        else gameObjects[(int)y][(int)x] = createBlock(spriteIndex, new Vector3((int)x, (int)-y, 0));
+        else gameObjects[(int)y][(int)x] = createBlock(spriteIndex, new Vector3((int)x, (int)-y, 0), instance);
     }
 
     static BLOCKS blockAt(float x, float y)
@@ -65,9 +65,9 @@ public class MapGenerator : MonoBehaviour
         return blocks[(int)y][(int)x];
     }
 
-    static GameObject createBlock(char index, Vector3 pos)
+    static GameObject createBlock(char index, Vector3 pos, MapGenerator inst)
     {
-        GameObject obj = GameObject.Instantiate(instance.blockTemplate, pos, Quaternion.Euler(0, 0, 0), instance.mapObject.transform);
+        GameObject obj = GameObject.Instantiate(inst.blockTemplate, pos, Quaternion.Euler(0, 0, 0), inst.mapObject.transform);
         obj.GetComponent<SpriteRenderer>().sprite = sprites[index-1];
         return obj;
     }
@@ -127,7 +127,7 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        if (this.saveMap) instance = this;
         // load blocks sprites
         sprites = new Sprite[10];
         sprites[0] = Resources.Load<Sprite>("Sprites/Menu_Grass");
@@ -143,7 +143,7 @@ public class MapGenerator : MonoBehaviour
         TextAsset textAsset = Resources.Load<TextAsset>(mapPath);
         string[] mapdata = textAsset.text.Split('\n');
         if (this.saveMap) blocks = new BLOCKS[mapdata.Length][];
-        gameObjects = new GameObject[mapdata.Length][];
+        if (this.saveMap) gameObjects = new GameObject[mapdata.Length][];
 
         // create the game map
         int y = 0;
@@ -152,7 +152,7 @@ public class MapGenerator : MonoBehaviour
             int x = -1;
             char[] charRow = mapRow.ToCharArray();
             if (this.saveMap) blocks[y] = new BLOCKS[mapRow.Length];
-            gameObjects[y] = new GameObject[mapRow.Length];
+            if (this.saveMap) gameObjects[y] = new GameObject[mapRow.Length];
             Debug.Log("y="+y);
             foreach (char bloc in charRow)
             {
@@ -161,7 +161,8 @@ public class MapGenerator : MonoBehaviour
                 if (nbr > 65000) continue;
                 if (this.saveMap) blocks[y][x] = char2block(nbr);
                 if (nbr == 0) continue; // air block, skip
-                gameObjects[y][x] = createBlock(nbr, new Vector3(x, -y, 0));
+                if (this.saveMap) gameObjects[y][x] = createBlock(nbr, new Vector3(x, -y, 0), this);
+                else createBlock(nbr, new Vector3(x, -y, 0), this);
             }
             ++y;
         }

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PongBall : MonoBehaviour
 {
 
@@ -7,7 +7,11 @@ public class PongBall : MonoBehaviour
     float maxX, minX, maxY, minY;
 
     Vector3 direction;
-    float speed = 3f;
+    float speed = 2f;
+    float rotSpeed = 0.25f;
+    float animTime = 0f;
+
+    Material mat;
 
     public void changeX()
     {
@@ -22,22 +26,34 @@ public class PongBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.direction = new Vector3(
+        this.mat = GetComponent<MeshRenderer>().material;
+        this.direction = new Vector2(
             Random.Range(-1f, 1f),
-            Random.Range(-1f, 1f),
-            0
-        );
-        this.direction.Normalize();
+            Random.Range(-1f, 1f)
+        ).normalized;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxisRaw(PlayerController.HORIZONTAL);
-        float vertical = Input.GetAxisRaw(PlayerController.VERTICAL);
-        if (horizontal != 0 || vertical != 0)
+        if (this.animTime < 2)
         {
-            // modify direction based on the key
+            this.animTime += Time.deltaTime;
+            if (this.animTime < 1)
+                this.mat.color = new Color(this.animTime, this.animTime, this.animTime);
+            transform.localScale = new Vector3(this.animTime*0.01f, this.animTime*0.01f, this.animTime*0.01f);
+        }
+
+
+        float horizontal = Input.GetAxisRaw(PlayerController.HORIZONTAL);
+        if (horizontal != 0)
+        {
+            float curAngle = Mathf.Atan2(this.direction.y, this.direction.x);
+            curAngle -= Time.deltaTime * horizontal * rotSpeed;
+            this.direction = new Vector2(
+                Mathf.Cos(curAngle),
+                Mathf.Sin(curAngle)
+            ).normalized;
         }
 
         Vector3 movements = this.direction * Time.deltaTime * this.speed;
@@ -53,6 +69,6 @@ public class PongBall : MonoBehaviour
 
     void win()
     {
-
+        SceneManager.LoadScene("Menu");
     }
 }

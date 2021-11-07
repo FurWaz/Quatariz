@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -325,8 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37fd37ff9d4931d40b61b582a07ed9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxY: 3.2
-  minY: -3.2
+  maxY: 3.9
+  minY: -3.9
   ball: {fileID: 1386446465}
 --- !u!1 &1386446465
 GameObject:
@@ -360,10 +360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8a1dcac473b6543a6dd6c17af7e608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxX: 7.8
-  minX: -7.8
-  maxY: 3.7
-  minY: -3.7
+  maxX: 8.5
+  minX: -8.5
+  maxY: 3.9
+  minY: -3.9
 --- !u!64 &1386446467
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -434,13 +434,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386446465}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!1 &1790527129
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +477,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -494,7 +494,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -633,6 +633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37fd37ff9d4931d40b61b582a07ed9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxY: 3.2
-  minY: -3.2
+  maxY: 3.9
+  minY: -3.9
   ball: {fileID: 1386446465}

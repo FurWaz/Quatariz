@@ -8,16 +8,28 @@ public class PongIA : MonoBehaviour
     float maxY, minY;
     [SerializeField]
     GameObject ball;
-    float speed = 3f;
+    float speed = 4.5f;
+    float fadetime = 0;
+    Material mat;
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.mat = GetComponent<MeshRenderer>().material;
+        this.mat.color = new Color(0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (this.fadetime < 3)
+        {
+            if (this.fadetime > 1)
+            {
+                float col = (this.fadetime-1)*0.5f;
+                this.mat.color = new Color(col, col, col);
+            }
+            this.fadetime += Time.deltaTime;
+        }
         Vector3 pos = transform.position;
         Vector3 bpos = ball.transform.position;
         Vector3 newPos = pos;
@@ -35,7 +47,7 @@ public class PongIA : MonoBehaviour
         {
             float distY = Mathf.Abs(pos.y - bpos.y);
             // hit plank, change X direction
-            if (distY < (ball.transform.localScale.y+transform.localScale.y)*5)
+            if (distY < (ball.transform.localScale.y+transform.localScale.y)*8)
             {
                 PongBall pb = ball.GetComponent<PongBall>();
                 // if ball in our direction, inverse it

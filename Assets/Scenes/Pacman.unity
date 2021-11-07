@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &213152525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 213152527}
+  - component: {fileID: 213152526}
+  m_Layer: 0
+  m_Name: pacMap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &213152526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213152525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe9173b521b6804e979bf3672dee17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapCube: {fileID: 42494140686577874, guid: d38f2a0ad5af2044a9909417daa8d983, type: 3}
+--- !u!4 &213152527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213152525}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &370294349
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +179,6 @@ GameObject:
   - component: {fileID: 370294353}
   - component: {fileID: 370294352}
   - component: {fileID: 370294351}
-  - component: {fileID: 370294350}
   - component: {fileID: 370294355}
   m_Layer: 0
   m_Name: PhantomBlue
@@ -144,18 +187,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &370294350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370294349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8481a58088dde6349b364545c1144685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &370294351
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -227,8 +258,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370294349}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -257,7 +288,6 @@ GameObject:
   - component: {fileID: 748974524}
   - component: {fileID: 748974523}
   - component: {fileID: 748974522}
-  - component: {fileID: 748974521}
   - component: {fileID: 748974526}
   m_Layer: 0
   m_Name: PhantomPink
@@ -266,18 +296,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &748974521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748974520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8481a58088dde6349b364545c1144685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &748974522
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -350,7 +368,7 @@ Transform:
   m_GameObject: {fileID: 748974520}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: -2, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -379,7 +397,6 @@ GameObject:
   - component: {fileID: 1178644036}
   - component: {fileID: 1178644035}
   - component: {fileID: 1178644034}
-  - component: {fileID: 1178644033}
   - component: {fileID: 1178644038}
   m_Layer: 0
   m_Name: PhantomOrange
@@ -388,18 +405,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1178644033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1178644032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8481a58088dde6349b364545c1144685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &1178644034
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -472,7 +477,7 @@ Transform:
   m_GameObject: {fileID: 1178644032}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -617,8 +622,8 @@ Camera:
   m_GameObject: {fileID: 1490726035}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -635,7 +640,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -659,7 +664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490726035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -677,7 +682,6 @@ GameObject:
   - component: {fileID: 1509235668}
   - component: {fileID: 1509235667}
   - component: {fileID: 1509235666}
-  - component: {fileID: 1509235665}
   - component: {fileID: 1509235670}
   m_Layer: 0
   m_Name: PacPlayer
@@ -686,18 +690,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1509235665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509235664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8481a58088dde6349b364545c1144685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &1509235666
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -799,8 +791,8 @@ GameObject:
   - component: {fileID: 2107176334}
   - component: {fileID: 2107176333}
   - component: {fileID: 2107176332}
+  - component: {fileID: 2107176337}
   - component: {fileID: 2107176331}
-  - component: {fileID: 2107176336}
   m_Layer: 0
   m_Name: PhantomRed
   m_TagString: Untagged
@@ -892,12 +884,12 @@ Transform:
   m_GameObject: {fileID: 2107176330}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
---- !u!114 &2107176336
+--- !u!114 &2107176337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -906,6 +898,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2107176330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8481a58088dde6349b364545c1144685, type: 3}
+  m_Script: {fileID: 11500000, guid: 01b060a5e827c6c48846dd01aad05e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
